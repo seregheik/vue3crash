@@ -1,6 +1,6 @@
 <template>
   <h1 v-if="isShowing" v-html="title"></h1>
-  <p>test</p>
+  <p v-else>test</p>
 </template>
 <script>
 export default {
