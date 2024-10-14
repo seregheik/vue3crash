@@ -1,13 +1,17 @@
 <template>
-  <h1 v-if="isShowing" v-html="title"></h1>
-  <p v-else>test</p>
+  <h1>DC HEROES</h1>
+  <ul>
+    <li v-for="(hero, key) in dcHeroes" v-bind:key="key">
+      {{ hero }} {{ key }}
+    </li>
+  </ul>
 </template>
+
 <script>
 export default {
   data() {
     return {
-      title: '<div>hello osas</div>',
-      isShowing: true,
+      dcHeroes: ['Superman', 'Batman', 'Wonderwoman', 'Supergirl'],
     }
   },
 }
