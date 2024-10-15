@@ -1,21 +1,39 @@
 <template>
-  <h1>DC HEROES</h1>
+  <h1>DC HEROES : {{ herosCount }}</h1>
+  <h3>{{ fullname }}</h3>
   <ul>
     <li v-for="(hero, key) in dcHeroes" v-bind:key="key">{{ hero.name }}</li>
   </ul>
 
   <form @submit.prevent="addHero">
     <input v-model.lazy.trim="newHero" placeholder="enter hero name" />
-    <button type="submit">Add Hero</button>
+    <button type="submit">Add Hero</button> <br> <br>
+    <button></button>
   </form>
 </template>
 
 <script>
 export default {
+  computed: {
+    herosCount() {
+      return this.dcHeroes.length;
+    },
+    fullname: {
+      get() {
+        return `${this.fname} ${this.lname}`;
+      },
+      set(fullname) {
+        alert('fullname has changed ');
+        [this.fname, this.lname] = fullname.split(' ');
+      }
+    },
+  },
   data() {
     return {
       isActive: false,
-      newHero: 'Aquaman',
+      fname: 'Osasere',
+      lname: 'Ikponmwosa',
+      newHero: '',
       dcHeroes: [
         { name: 'Superman' },
         { name: 'Batman' },
@@ -27,7 +45,6 @@ export default {
   methods: {
     addHero() {
       if (this.newHero != '') {
-        alert(`added: ${this.newHero}`);
         this.dcHeroes.push({ name: this.newHero });
         this.newHero = '';
 
