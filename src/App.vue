@@ -1,12 +1,11 @@
 <template>
   <h1>DC HEROES</h1>
   <ul>
-    <li v-for="(hero, key) in dcHeroes" v-bind:key="key">
-      {{ key }} {{ hero.name }}
-    </li>
+    <li v-for="(hero, key) in dcHeroes" v-bind:key="key">{{ hero.name }}</li>
   </ul>
-  <input v-model.lazy.trim="newHero" />
-  <form @submit.prevent="dcHeroes[2].name = newHero">
+
+  <form @submit.prevent="addHero">
+    <input v-model.lazy.trim="newHero" placeholder="enter hero name" />
     <button type="submit">Add Hero</button>
   </form>
 </template>
@@ -23,6 +22,16 @@ export default {
         { name: 'Wonderwoman' },
         { name: 'Supergirl' },
       ],
+    }
+  },
+  methods: {
+    addHero() {
+      if (this.newHero != '') {
+        alert(`added: ${this.newHero}`);
+        this.dcHeroes.push({ name: this.newHero });
+        this.newHero = '';
+
+      }
     }
   },
 }
